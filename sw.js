@@ -1,7 +1,9 @@
-const CACHE_NAME = "calm-cloud-v2";
+const CACHE_NAME = "calm-cloud-v3";
 const APP_FILES = [
   "./",
   "./index.html",
+  "./about.html",
+  "./privacy.html",
   "./styles.css",
   "./script.js",
   "./manifest.webmanifest",
