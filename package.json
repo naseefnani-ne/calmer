@@ -1,0 +1,23 @@
+{
+  "name": "calm-kids-app",
+  "version": "1.0.0",
+  "description": "Calm Cloud is a lightweight web app designed to help kids with ADHD and hyperactivity regulate emotions, release extra energy, and return to focus.",
+  "main": "script.js",
+  "scripts": {
+    "copy:web": "powershell -NoProfile -Command \"Copy-Item -Path index.html,styles.css,script.js,manifest.webmanifest,sw.js,icon-192.svg,icon-512.svg -Destination web -Force\"",
+    "sync": "npm run copy:web && npx cap sync",
+    "android": "npm run sync && npx cap open android",
+    "ios": "npm run sync && npx cap open ios",
+    "run:web": "python -m http.server 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@capacitor/android": "^8.3.0",
+    "@capacitor/cli": "^8.3.0",
+    "@capacitor/core": "^8.3.0",
+    "@capacitor/ios": "^8.3.0"
+  }
+}

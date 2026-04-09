@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calm Cloud - ADHD Calm Companion</title>
+  <meta name="theme-color" content="#5b9cff" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon-192.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">☁</span>
+      <h1>Calm Cloud</h1>
+    </div>
+    <button id="quickCalmBtn" class="btn-primary">Quick Calm (2 min)</button>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <h2>Hi friend, let's feel calm together.</h2>
+      <p>Pick one easy activity. Bright minds need gentle breaks.</p>
+      <div class="age-band-row">
+        <label for="ageBandSelect" class="metric-label">Age Mode</label>
+        <select id="ageBandSelect">
+          <option value="5-7">Ages 5-7</option>
+          <option value="8-10">Ages 8-10</option>
+          <option value="11-13">Ages 11-13</option>
+        </select>
+      </div>
+      <div class="mood-row">
+        <button class="mood" data-mood="stormy">Stormy</button>
+        <button class="mood" data-mood="wiggly">Wiggly</button>
+        <button class="mood" data-mood="okay">Okay</button>
+      </div>
+      <p id="moodTip" class="tip">Tip: Try a balloon breath to slow your body.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Balloon Breathing</h3>
+        <p>Breathe in 4, hold 2, breathe out 6.</p>
+        <div class="breath-circle" id="breathCircle" aria-live="polite">
+          <span id="breathText">Tap Start</span>
+        </div>
+        <button id="breathBtn" class="btn-secondary">Start Breathing</button>
+      </article>
+
+      <article class="card">
+        <h3>Focus Timer</h3>
+        <p>Short, ADHD-friendly work sprints.</p>
+        <div class="timer-box">
+          <span id="timerDisplay">05:00</span>
+        </div>
+        <div class="timer-actions">
+          <button class="btn-secondary" data-mins="3">3 min</button>
+          <button class="btn-secondary" data-mins="5">5 min</button>
+          <button class="btn-secondary" data-mins="8">8 min</button>
+        </div>
+        <button id="timerBtn" class="btn-primary">Start Timer</button>
+      </article>
+
+      <article class="card">
+        <h3>Calm Choices</h3>
+        <p>Tap for a gentle idea.</p>
+        <div id="choiceText" class="choice">Give your hands a tight squeeze and release.</div>
+        <button id="choiceBtn" class="btn-secondary">New Calm Idea</button>
+      </article>
+
+      <article class="card">
+        <h3>Reward Stars</h3>
+        <p>Celebrate every calm reset.</p>
+        <div class="stars" id="stars">☆☆☆☆☆</div>
+        <button id="starBtn" class="btn-secondary">I Did It</button>
+      </article>
+
+      <article class="card">
+        <h3>Calm Soundscape</h3>
+        <p>Pick a soft background sound.</p>
+        <div class="sound-actions">
+          <button class="btn-secondary sound-btn" data-sound="rain">Rain</button>
+          <button class="btn-secondary sound-btn" data-sound="waves">Waves</button>
+          <button class="btn-secondary sound-btn" data-sound="wind">Wind</button>
+        </div>
+        <label for="soundVolume" class="metric-label">Volume</label>
+        <input id="soundVolume" type="range" min="0" max="100" value="30" />
+        <button id="soundStopBtn" class="btn-secondary">Stop Sound</button>
+      </article>
+
+      <article class="card">
+        <h3>Nervous System Check-In</h3>
+        <p>How big is your body energy right now?</p>
+        <div class="energy-row">
+          <button class="btn-secondary energy-btn" data-energy="1">1</button>
+          <button class="btn-secondary energy-btn" data-energy="2">2</button>
+          <button class="btn-secondary energy-btn" data-energy="3">3</button>
+          <button class="btn-secondary energy-btn" data-energy="4">4</button>
+          <button class="btn-secondary energy-btn" data-energy="5">5</button>
+        </div>
+        <p id="energyPlan" class="tip">Choose a number to get a matched calming plan.</p>
+      </article>
+    </section>
+
+    <section class="card section-gap">
+      <h3>Parent / Teacher Routine Builder</h3>
+      <p>Create custom calming steps for quick access.</p>
+      <div class="routine-inputs">
+        <input id="routineInput" type="text" maxlength="120" placeholder="Example: 10 deep breaths with stuffed toy" />
+        <button id="addRoutineBtn" class="btn-primary">Add Step</button>
+      </div>
+      <div class="routine-actions">
+        <button id="startRoutineBtn" class="btn-secondary">Start My Routine</button>
+        <button id="clearRoutineBtn" class="btn-secondary">Clear Routine</button>
+      </div>
+      <ul id="routineList" class="routine-list"></ul>
+      <p id="routineNow" class="tip">No custom routine running.</p>
+    </section>
+
+    <section class="card section-gap">
+      <h3>Co-Regulation Script</h3>
+      <p>Use these words to reduce shame and increase safety.</p>
+      <div id="coregScript" class="choice">
+        I can see this is hard right now. You are safe. I will stay with you while your body calms.
+      </div>
+      <button id="nextScriptBtn" class="btn-secondary">Next Script</button>
+    </section>
+
+    <section class="card section-gap">
+      <h3>Crisis Pathway</h3>
+      <p>Choose what stage your child is in right now.</p>
+      <div class="pathway-actions">
+        <button class="btn-secondary pathway-btn" data-pathway="pre">Pre-Meltdown</button>
+        <button class="btn-secondary pathway-btn" data-pathway="meltdown">Meltdown</button>
+      </div>
+      <div id="pathwayPlan" class="choice">Tap a pathway to see step-by-step support.</div>
+    </section>
+
+    <section class="card section-gap">
+      <h3>Progress Dashboard</h3>
+      <div class="dashboard-grid">
+        <div class="metric">
+          <span class="metric-label">Calm Actions Today</span>
+          <strong id="actionsToday">0</strong>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Current Streak</span>
+          <strong id="streakCount">0 days</strong>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Total Calm Actions</span>
+          <strong id="totalActions">0</strong>
+        </div>
+      </div>
+      <p class="tip" id="lastAction">No calm activity recorded yet.</p>
+      <button id="resetProgressBtn" class="btn-secondary">Reset Progress</button>
+    </section>
+
+    <section class="card section-gap">
+      <h3>Parent Controls</h3>
+      <p>Optional PIN to protect settings and progress reset.</p>
+      <div class="routine-inputs">
+        <input id="pinInput" type="password" maxlength="8" placeholder="Set 4-8 digit PIN" />
+        <button id="savePinBtn" class="btn-secondary">Save PIN</button>
+      </div>
+      <div class="routine-inputs">
+        <input id="pinUnlockInput" type="password" maxlength="8" placeholder="Enter PIN to unlock" />
+        <button id="unlockBtn" class="btn-primary">Unlock</button>
+      </div>
+      <p id="pinStatus" class="tip">No PIN set. Parent controls are open.</p>
+    </section>
+
+    <section class="card section-gap">
+      <h3>Caregiver Debrief Log</h3>
+      <p>Record triggers, supports used, and what helped for pattern tracking.</p>
+      <div class="debrief-grid">
+        <input id="triggerInput" type="text" maxlength="80" placeholder="Trigger (noise, transition, hunger)" />
+        <input id="supportInput" type="text" maxlength="80" placeholder="Support used (breathing, heavy work)" />
+        <input id="outcomeInput" type="text" maxlength="80" placeholder="What helped most" />
+      </div>
+      <div class="routine-actions">
+        <button id="saveDebriefBtn" class="btn-primary">Save Debrief</button>
+        <button id="clearDebriefBtn" class="btn-secondary">Clear Debriefs</button>
+      </div>
+      <p id="debriefTrend" class="tip">No debrief entries yet.</p>
+      <ul id="debriefList" class="routine-list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">Made with kindness for kids, parents, and teachers.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
